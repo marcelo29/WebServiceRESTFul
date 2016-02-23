@@ -8,31 +8,31 @@ import br.com.webserviceagendamedica.dao.AgendaMedicaDAO;
 import br.com.webserviceagendamedica.model.AgendaMedica;
 
 /**
- * Classe responsável por
+ * Classe responsï¿½vel por
  * 
  * @Autor Renan
- * @Criação 25 de nov de 2015
+ * @Criaï¿½ï¿½o 25 de nov de 2015
  */
 public class AgendaMedicaController extends AbstractController<AgendaMedica> {
 
 	public AgendaMedicaController() {
-		super(new AgendaMedicaDAO());
+		super(new AgendaMedicaDAO().getInstance());
 	}
 
-	public List<AgendaMedica> listarPorLocalAtendimento(int id) {				
-		return AgendaMedicaDAO.getInstance().listarPorLocalAtendimento(id);
+	public List<AgendaMedica> listarPorLocalAtendimento(int id) {
+		return new AgendaMedicaDAO().getInstance().listarPorLocalAtendimento(id);
 	}
-	
-	public List<AgendaMedica> listarPorData(Date data) {				
-		return AgendaMedicaDAO.getInstance().listarPorData(data);
+
+	public List<AgendaMedica> listarPorData(Date data) {
+		return new AgendaMedicaDAO().getInstance().listarPorData(data);
 	}
-	
-	public List<AgendaMedica> listarPorMedico(int id) {				
-		return AgendaMedicaDAO.getInstance().listarPorMedico(id);
+
+	public List<AgendaMedica> listarPorMedico(int id) {
+		return new AgendaMedicaDAO().getInstance().listarPorMedico(id);
 	}
-	
-	public List<AgendaMedica> listarPorEspecialidade(int id) {				
-		return AgendaMedicaDAO.getInstance().listarPorEspecialidade(id);
+
+	public List<AgendaMedica> listarPorEspecialidade(int id) {
+		return new AgendaMedicaDAO().getInstance().listarPorEspecialidade(id);
 	}
 
 }

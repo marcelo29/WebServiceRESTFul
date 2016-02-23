@@ -5,10 +5,10 @@ import br.com.webserviceagendamedica.dao.ConsultaMarcadaDAO;
 import br.com.webserviceagendamedica.model.ConsultaMarcada;
 
 /**
- * Classe responsável por
+ * Classe responsï¿½vel por
  * 
  * @Autor Renan
- * @Criação 25 de nov de 2015
+ * @Criaï¿½ï¿½o 25 de nov de 2015
  */
 public class ConsultaMarcadaController extends AbstractController<ConsultaMarcada> {
 

@@ -6,22 +6,22 @@ import br.com.webserviceagendamedica.abstractclass.AbstractDAO;
 import br.com.webserviceagendamedica.model.Especialidade;
 
 /**
- * Classe responsável pelos metodos de CRUD.
+ * Classe responsï¿½vel pelos metodos de CRUD.
  * 
  * @Autor Renan
  */
 
 public class EspecialidadeDAO extends AbstractDAO<Especialidade> {
 
-	public static EspecialidadeDAO instance; 
+	private static EspecialidadeDAO instance;
 
-	public static EspecialidadeDAO getInstance() {
-		if(instance == null){
+	public EspecialidadeDAO getInstance() {
+		if (instance == null) {
 			instance = new EspecialidadeDAO();
 		}
 		return instance;
 	}
-	
+
 	@Override
 	public List<Especialidade> listarTodos() {
 		getConnection();

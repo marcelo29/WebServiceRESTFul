@@ -5,10 +5,10 @@ import br.com.webserviceagendamedica.dao.LocalAtendimentoDAO;
 import br.com.webserviceagendamedica.model.LocalAtendimento;
 
 /**
- * Classe responsável por
+ * Classe responsï¿½vel por
  * 
  * @Autor Renan
- * @Criação 25 de nov de 2015
+ * @Criaï¿½ï¿½o 25 de nov de 2015
  */
 public class LocalAtendimentoController extends AbstractController<LocalAtendimento> {
 

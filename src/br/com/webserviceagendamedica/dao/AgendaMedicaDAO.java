@@ -8,23 +8,23 @@ import br.com.webserviceagendamedica.enumerator.Situacao;
 import br.com.webserviceagendamedica.model.AgendaMedica;
 
 /**
- * Classe responsável por
+ * Classe responsï¿½vel por
  * 
  * @Autor Renan
- * @Criação 25 de nov de 2015
+ * @Criaï¿½ï¿½o 25 de nov de 2015
  */
 public class AgendaMedicaDAO extends AbstractDAO<AgendaMedica> {
 
-	public static AgendaMedicaDAO instance; 
+	private static AgendaMedicaDAO instance;
 
-	public static AgendaMedicaDAO getInstance() {
-		if(instance == null){
+	public AgendaMedicaDAO getInstance() {
+		if (instance == null) {
 			instance = new AgendaMedicaDAO();
 		}
 		return instance;
 	}
-	
-	private List<AgendaMedica> getLista(String sql){
+
+	private List<AgendaMedica> getLista(String sql) {
 		getConnection();
 		lista.clear();
 		try {
@@ -33,11 +33,12 @@ public class AgendaMedicaDAO extends AbstractDAO<AgendaMedica> {
 
 			while (rs.next()) {
 				AgendaMedica agendamedica = new AgendaMedica();
-				agendamedica.setId(rs.getLong("id_agenda_medica"));
-				agendamedica.setMedico(MedicoDAO.getInstance().buscarPorId(rs.getInt("id_medico")));
+				agendamedica.setId(rs.getLong("id_agenda_medico"));
+				agendamedica.setMedico(new MedicoDAO().getInstance().buscarPorId(rs.getInt("id_medico")));
 				agendamedica.setDataAgenda(rs.getDate("data_agenda"));
-				agendamedica.setLocalAtendimento(LocalAtendimentoDAO.getInstance().buscarPorId(rs.getInt("id_local_atendimento")));
-				agendamedica.setSituacao(Situacao.getSituacao(rs.getString("situacao")));				  
+				agendamedica.setLocalAtendimento(
+						new LocalAtendimentoDAO().getInstance().buscarPorId(rs.getInt("id_local_atendimento")));
+				agendamedica.setSituacao(Situacao.getSituacao(rs.getString("situacao")));
 				lista.add(agendamedica);
 			}
 		} catch (Exception e) {
@@ -45,34 +46,34 @@ public class AgendaMedicaDAO extends AbstractDAO<AgendaMedica> {
 		} finally {
 			fechaConexao();
 		}
-		return lista;		
+		return lista;
 	}
-	
+
 	@Override
 	public List<AgendaMedica> listarTodos() {
-		return getLista("select * from tb_agenda_medica");
+		return getLista("select * from tb_agenda_medico");
 	}
 
 	@Override
 	public AgendaMedica buscarPorId(int id) {
-		return getLista("select * from tb_agenda_medica where id_agenda_medica = " + String.valueOf(id)).get(0);
+		return getLista("select * from tb_agenda_medico where id_agenda_medico = " + String.valueOf(id)).get(0);
 	}
-	
-	public List<AgendaMedica> listarPorLocalAtendimento(int id) {				
-		return getLista("select * from tb_agenda_medica where id_local_atendimento = " + String.valueOf(id));
+
+	public List<AgendaMedica> listarPorLocalAtendimento(int id) {
+		return getLista("select * from tb_agenda_medico where id_local_atendimento = " + String.valueOf(id));
 	}
-	
-	public List<AgendaMedica> listarPorData(Date data) {				
-		return getLista("select * from tb_agenda_medica where id_local_atendimento = " + String.valueOf(data));
+
+	public List<AgendaMedica> listarPorData(Date data) {
+		return getLista("select * from tb_agenda_medico where id_local_atendimento = " + String.valueOf(data));
 	}
-	
-	public List<AgendaMedica> listarPorMedico(int id) {				
-		return getLista("select * from tb_agenda_medica where id_medico = " + String.valueOf(id));
+
+	public List<AgendaMedica> listarPorMedico(int id) {
+		return getLista("select * from tb_agenda_medico where id_medico = " + String.valueOf(id));
 	}
-	
-	public List<AgendaMedica> listarPorEspecialidade(int id) {				
-		String sql = "select tam.* from tb_agenda_medica tam inner join tb_medico tmd on tmd.id_medico = tam.id_medico "+
-                     " where tmd.id_especialidade = " + String.valueOf(id);
+
+	public List<AgendaMedica> listarPorEspecialidade(int id) {
+		String sql = "select tam.* from tb_agenda_medico tam inner join tb_medico tmd on tmd.id_medico = tam.id_medico "
+				+ " where tmd.id_especialidade = " + String.valueOf(id);
 		return getLista(sql);
 	}
 }

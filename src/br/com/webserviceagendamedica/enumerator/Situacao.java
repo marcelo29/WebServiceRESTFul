@@ -5,15 +5,21 @@ public enum Situacao {
 	Disponivel, /* D */
 	Cancelada; /* C */
 
+	private static String tipoSituacao = "";
+
 	public static Situacao getSituacao(String situacao) {
 
 		Situacao retorno = null;
+
 		switch (situacao) {
 		case "M":
+			tipoSituacao = "M";
 			retorno = Marcada;
 		case "D":
+			tipoSituacao = "D";
 			retorno = Disponivel;
 		case "C":
+			tipoSituacao = "C";
 			retorno = Cancelada;
 		default:
 			break;
@@ -21,4 +27,7 @@ public enum Situacao {
 		return retorno;
 	}
 
+	public String getTipoSituacao() {
+		return tipoSituacao;
+	}
 }

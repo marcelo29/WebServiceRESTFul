@@ -6,44 +6,46 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- * Classe responsável por criar a conexão com banco de dados.
+ * Classe responsï¿½vel por criar a conexï¿½o com banco de dados.
+ * 
  * @author Renan
  *
  */
 public class ConnectionFactory {
-	private static final String DRIVER="org.postgresql.Driver";
-	private static final String URL="jdbc:postgresql://localhost:5432/AgendaMedica";
-	private static final String USER="postgres";
-	private static final String PASSWORD="1234";
-	
+
+	private static final String DRIVER = "com.mysql.jdbc.Driver";
+	private static final String URL = "jdbc:mysql://localhost/agenda_medica";
+	private static final String USER = "root";
+	private static final String PASSWORD = "123";
+
 	@SuppressWarnings("finally")
 	public static Connection criaConexao() {
 		Connection conn = null;
 		try {
 			Class.forName(DRIVER);
-			conn = DriverManager.getConnection(URL,USER,PASSWORD);
-			
+			conn = DriverManager.getConnection(URL, USER, PASSWORD);
+
 		} catch (Exception e) {
-			System.out.println("Erro na conexão com o banco de dados" + e);
+			// System.out.println("Erro na conexï¿½o com o banco de dados" + e);
 			e.printStackTrace();
-		} finally{
+		} finally {
 			return conn;
 		}
 	}
-	
+
 	public static void fechaConexao(Connection conn, PreparedStatement pstmt, ResultSet rs) {
 		try {
-			if(conn != null) {
+			if (conn != null) {
 				conn.close();
 			}
-			if(pstmt != null){
+			if (pstmt != null) {
 				pstmt.close();
 			}
-			if(rs != null) {
+			if (rs != null) {
 				rs.close();
 			}
 		} catch (Exception e) {
-			System.out.println("Erro no encerramento da conexão " + e);
+			// System.out.println("Erro no encerramento da conexï¿½o " + e);
 			e.printStackTrace();
 		}
 	}

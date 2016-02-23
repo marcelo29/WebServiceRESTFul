@@ -7,22 +7,23 @@ import br.com.webserviceagendamedica.enumerator.Perfil;
 import br.com.webserviceagendamedica.model.Usuario;
 
 /**
- * Classe responsável por
+ * Classe responsï¿½vel por
+ * 
  * @Autor Renan
- * @Criação 25 de nov de 2015
+ * @Criaï¿½ï¿½o 25 de nov de 2015
  */
 
 public class UsuarioDAO extends AbstractDAO<Usuario> {
-	
-	public static UsuarioDAO instance; 
 
-	public static UsuarioDAO getInstance() {
-		if(instance == null){
+	private static UsuarioDAO instance;
+
+	public UsuarioDAO getInstance() {
+		if (instance == null) {
 			instance = new UsuarioDAO();
 		}
 		return instance;
 	}
-	
+
 	@Override
 	public List<Usuario> listarTodos() {
 		getConnection();
@@ -47,7 +48,7 @@ public class UsuarioDAO extends AbstractDAO<Usuario> {
 		}
 		return lista;
 	}
-	
+
 	@Override
 	public Usuario buscarPorId(int id) {
 		getConnection();

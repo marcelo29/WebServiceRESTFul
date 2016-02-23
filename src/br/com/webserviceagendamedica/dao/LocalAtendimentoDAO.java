@@ -6,16 +6,16 @@ import br.com.webserviceagendamedica.abstractclass.AbstractDAO;
 import br.com.webserviceagendamedica.model.LocalAtendimento;
 
 /**
- * Classe responsável por
+ * Classe responsï¿½vel por
  * 
  * @Autor Renan
- * @Criação 25 de nov de 2015
+ * @Criaï¿½ï¿½o 25 de nov de 2015
  */
 public class LocalAtendimentoDAO extends AbstractDAO<LocalAtendimento> {
 
-	public static LocalAtendimentoDAO instance;
+	private static LocalAtendimentoDAO instance;
 
-	public static LocalAtendimentoDAO getInstance() {
+	public LocalAtendimentoDAO getInstance() {
 		if (instance == null) {
 			instance = new LocalAtendimentoDAO();
 		}

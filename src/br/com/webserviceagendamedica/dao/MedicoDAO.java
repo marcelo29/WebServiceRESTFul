@@ -6,23 +6,23 @@ import br.com.webserviceagendamedica.abstractclass.AbstractDAO;
 import br.com.webserviceagendamedica.model.Medico;
 
 /**
- * Classe responsável por
+ * Classe responsï¿½vel por
  * 
  * @Autor Renan
- * @Criação 25 de nov de 2015
+ * @Criaï¿½ï¿½o 25 de nov de 2015
  */
 
 public class MedicoDAO extends AbstractDAO<Medico> {
 
-	public static MedicoDAO instance; 
+	private static MedicoDAO instance;
 
-	public static MedicoDAO getInstance() {
-		if(instance == null){
+	public MedicoDAO getInstance() {
+		if (instance == null) {
 			instance = new MedicoDAO();
 		}
 		return instance;
 	}
-	
+
 	@Override
 	public List<Medico> listarTodos() {
 		getConnection();
@@ -35,7 +35,8 @@ public class MedicoDAO extends AbstractDAO<Medico> {
 				Medico medico = new Medico();
 				medico.setId(rs.getLong("id_medico"));
 				medico.setCrm(rs.getInt("crm"));
-				medico.setEspecialidade(EspecialidadeDAO.getInstance().buscarPorId(rs.getInt("id_especialidade")));
+				medico.setEspecialidade(
+						new EspecialidadeDAO().getInstance().buscarPorId(rs.getInt("id_especialidade")));
 				medico.setNome(rs.getString("nome"));
 				lista.add(medico);
 			}
@@ -54,12 +55,13 @@ public class MedicoDAO extends AbstractDAO<Medico> {
 		try {
 			ps = conn.prepareStatement("select * from tb_medico where id_medico = " + String.valueOf(id));
 			rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				medico = new Medico();
 				medico.setId(rs.getLong("id_medico"));
 				medico.setCrm(rs.getInt("crm"));
-				medico.setEspecialidade(EspecialidadeDAO.getInstance().buscarPorId(rs.getInt("id_especialidade")));
+				medico.setEspecialidade(
+						new EspecialidadeDAO().getInstance().buscarPorId(rs.getInt("id_especialidade")));
 				medico.setNome(rs.getString("nome"));
 			}
 		} catch (Exception e) {
